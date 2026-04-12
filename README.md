@@ -54,7 +54,7 @@ Using both models helps ensure that results are **robust and not dependent on a 
 
 1. Approval rates differ across racial groups.
 
-2. Income alone does not explain these differences.
+2. Income and Debt_To_Income do not explain these differences.
 
 3. Including race in the model (Model B) does not significantly change:
    - accuracy  
