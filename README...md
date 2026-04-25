@@ -102,10 +102,10 @@ Two model configurations and two algorithms are used, producing four models tota
 | `model_B_gbt` | With race | LightGBM | Diagnostic comparison |
 
 **Why LightGBM instead of sklearn GBT?**
-LightGBM is a Gradient Boosted Tree implementation optimized for large datasets. It uses the same core algorithm as sklearn's GradientBoostingClassifier but is 10–20x faster at the scale of 12 million rows, making it the industry-standard choice for large tabular data.
+LightGBM is a Gradient Boosted Tree implementation optimized for large datasets. It uses the same core algorithm as sklearn's GradientBoostingClassifier but is 10–20x faster at the scale of 12 million rows, making it the industry standard choice for large tabular data.
 
 **Why two model configurations?**
-Comparing Model A and Model B tests whether explicitly including race changes predictions. If results are similar, it suggests proxy variables in Model A are already carrying the racial signal — a key finding for fairness analysis.
+Comparing Model A and Model B tests whether explicitly including race changes predictions. If results are similar, it suggests proxy variables in Model A are already carrying the racial signal, a key finding for fairness analysis.
 
 ---
 
@@ -116,7 +116,7 @@ Comparing Model A and Model B tests whether explicitly including race changes pr
 |---|---|
 | 1. Data Inspection | Load data via DuckDB, inspect shape and columns |
 | 2. Target Construction | Filter action_taken and create binary label |
-| 3. Data Cleaning | Replace NA/Exempt, drop high-missingness columns |
+| 3. Data Cleaning | Replace NA/Exempt, drop high missingness columns |
 | 4. Baseline Fairness | Compare approval rates across race, sex, ethnicity before modeling |
 | DTI Processing | Convert debt_to_income_ratio to numeric groups |
 
@@ -181,7 +181,7 @@ P(Y=1 | S=s, A=1) ≈ P(Y=1 | S=s, A=0)
 Tests whether predicted probabilities carry equal meaning across groups. Evaluated via calibration curves and Brier scores.
 
 ### 6. Intersectionality (Crenshaw, 1989)
-Race × Sex subgroup combinations. Reports worst-group AIR and FNR. Captures compounded disadvantage invisible in single-axis analysis.
+Race × Sex subgroup combinations. Reports worst-group AIR and FNR. Captures compounded disadvantage invisible in single axis analysis.
 
 ---
 
@@ -200,9 +200,9 @@ Race × Sex subgroup combinations. Reports worst-group AIR and FNR. Captures com
 
 1. **Equalized Odds fails** — Racial disparities in FNR and FPR persist across both LR and GBT versions of Model A, confirming disparate impact even without the explicit race variable.
 
-2. **AIR violations** — Multiple racial groups fall below the EEOC 80% threshold, constituting prima facie adverse impact under the burden-shifting framework (Griggs v. Duke Power, 1971).
+2. **AIR violations** — Multiple racial groups fall below the EEOC 80% threshold, constituting prima facie adverse impact under the burden shifting framework (Griggs v. Duke Power, 1971).
 
-3. **ME is statistically significant** — Negative ME values for minority groups are not due to sampling noise, confirmed by two-proportion z-tests.
+3. **ME is statistically significant** — Negative ME values for minority groups are not due to sampling noise, confirmed by two proportion z-tests.
 
 4. **SMD reveals score-level bias** — Medium-to-large SMD values indicate that predicted probability distributions are shifted for certain groups before any threshold is applied.
 
